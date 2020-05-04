@@ -1,0 +1,19 @@
+{
+  "name": "Hands Free",
+  "version": "1.0",
+  "description": "Hands free User Interface",
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab",
+    "videoCapture"
+  ],
+  "browser_action": {
+    "default_popup": "popup/index.html"
+  },
+  "manifest_version": 2
+}
