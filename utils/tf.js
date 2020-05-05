@@ -4,6 +4,7 @@
         return;
     }
 
+
     const hint = {
         audio: false,
         video: {
@@ -11,8 +12,10 @@
         },
     };
 
-    chrome.runtime.sendMessage({ youCanAsk: true }, (response) => {
-        console.log('risposta', response);
-    });
 
+    navigator.mediaDevices.getUserMedia(hint).then((stream) => {
+        chrome.runtime.sendMessage({ youCanAsk: true }, (response) => {
+            console.log('risposta', response);
+        });
+    });
 })();

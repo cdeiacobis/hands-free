@@ -1,5 +1,6 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+        console.log(request)
         if (request.youCanAsk) {
             handleCamera();
             // sendResponse({ farewell: "goodbye" });
@@ -16,7 +17,7 @@ const handleCamera = () => {
 
     const video = document.querySelector('video');
 
-    navigator.getUserMedia(hint, async (stream) => {
+    navigator.mediaDevices.getUserMedia(hint).then((stream) => {
         // Load the MediaPipe facemesh model assets.
         const model = await facemesh.load();
 
@@ -30,7 +31,7 @@ const handleCamera = () => {
         // const canvas = new OffscreenCanvas(settings.width, settings.height);
 
         requestAnimationFrame(nextFrame.bind(null, model));
-    }, (args) => { console.error(args) });
+    });
 
     const nextFrame = async (model) => {
         // const imageBitmap = await imageCapture.grabFrame();
