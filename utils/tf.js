@@ -4,7 +4,6 @@
         return;
     }
 
-
     const hint = {
         audio: false,
         video: {
@@ -12,10 +11,16 @@
         },
     };
 
-
-    navigator.mediaDevices.getUserMedia(hint).then((stream) => {
-        chrome.runtime.sendMessage({ youCanAsk: true }, (response) => {
-            console.log('risposta', response);
+    navigator.mediaDevices.getUserMedia(hint)
+        .then((stream) => {
+            const video = document.querySelector('video');
+            video.style.display = 'block';
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch((error) => {
+            console.log(error);
+            const ask = document.getElementById('ask');
+            ask.style.display = 'block';
         });
-    });
 })();
