@@ -13,7 +13,7 @@
 
     navigator.mediaDevices.getUserMedia(hint)
         .then((stream) => {
-            const video = document.querySelector('video');
+            const video = document.getElementById('video-stream');
             video.style.display = 'block';
             video.srcObject = stream;
             video.play();
