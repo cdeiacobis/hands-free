@@ -1,6 +1,6 @@
 # hands-free
 
-Hands free User Interface prototype for Accessibility Days 2020 Hackaton
+A Chrome extension to add Hands free User Interface to any Web Page. A prototype built for Accessibility Days 2020 Hackaton.
 
 # How to install
 
