@@ -25,3 +25,11 @@ A Chrome extension to add Hands free User Interface to any Web Page. A prototype
 - Click on 'Carica estensione non pacchettizzata'
 - Look for the repository folder and select it
 
+# How to reset extension's camera permission
+
+- Go to `chrome://settings/content/camera`
+- Search for the extension name
+- On the right click on the tiny arrow
+- Click on 'Reimposta le autorizzazioni'
+- Confirm on the popup
+
