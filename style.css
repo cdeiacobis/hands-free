@@ -17,6 +17,7 @@ body {
 }
 
 #ask p {
+    flex: none;
     padding: 0;
     margin: 0.5em;
     margin-top: 0.25em;
@@ -24,18 +25,17 @@ body {
 
 .video-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 #video-stream {
   display: none;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
+  width: 50%;
+}
+
+.feedback {
+    width: 50%;
 }
 
 .container {
@@ -101,6 +101,20 @@ a {
     flex-direction: column;
     margin: 0 1em;
     justify-content: space-between;
+}
+
+.content {
+    display: flex;
+}
+
+.content .column {
+    width: 50%;
+}
+
+.content .disclaimer {
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .content p {

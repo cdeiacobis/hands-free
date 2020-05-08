@@ -1,6 +1,6 @@
 (() => {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        console.log('no fotocamera');
+        console.error('Errore fotocamera');
         return;
     }
 
