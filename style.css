@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "PlexMono";
+  src: url("./fonts/IBMPlexMono-Regular.ttf");
+}
+
+body {
+  font-family: "PlexMono";
+  margin: 0;
+  padding: 0;
+  width: 350px;
+}
+
+#ask {
+  padding: 1em;
+  text-decoration: none;
+  font-size: 1.5em;
+  color: black;
+}
+
+#ask p {
+    padding: 0;
+    margin: 0.5em;
+    margin-top: 0.25em;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#video-stream {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding: 1em;
+}
+
+.container p {
+  padding: 0;
+  margin: 0;
+  margin-top: 0.5em;
+}
+
+.title {
+  font-size: 1.25em;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  padding: 1em;
+}
+
+footer a {
+  text-decoration: none;
+  color: black;
+}

@@ -7,11 +7,28 @@
     <script src="../vendors/tfjs-core.js"></script>
     <script src="../vendors/tfjs-converter.js"></script>
     <script src="../vendors/facemesh.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="../utils/tf.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-    <video id="video-stream" autoplay muted playsInline></video>
-    <a id="ask" target="_blank" href="/permission/permission.html" style="display: none;">Clicca qui per accedere alla fotocamera</a>
-    <script src="../utils/tf.js"></script>
+    <div class="container">
+        <header>
+            <p class="title">Head only browser navigation</p>
+            <p>Control your web pages without touch.</p>
+        </header>
+
+    </div>
+    <div class="video-container">
+        <a id="ask" target="_blank" href="/permission/permission.html" style="display: none;">
+            <p>CLICK HERE TO START</p>
+            <p>THE EXPERIENCE</p>
+        </a>
+        <video id="video-stream" autoplay muted playsInline></video>
+    </div>
+    <footer>
+        <!-- TODO -->
+        <a href="https://github.com/chialab/hands-free/">Source</a>
+        <a href="https://chialab.it">Made with ❤️ by Chialab</a>
+    </footer>
 </body>
 </html>
