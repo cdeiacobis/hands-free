@@ -3,7 +3,8 @@
   "version": "1.0",
   "description": "Hands free User Interface",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "*://*/*"
   ],
   "browser_action": {
     "default_popup": "popup/index.html"
