@@ -37,6 +37,7 @@ const handleVideo = async () => {
     handleVideoFrame(video, model, feedback);
 };
 
+// box data 'cache'
 let previousBox = {};
 
 const handleVideoFrame = async (video, model, feedback) => {
@@ -70,15 +71,24 @@ const handleVideoFrame = async (video, model, feedback) => {
     ]
     */
 
-    const predictions = await model.estimateFaces(video);
+    const predictions = await model.estimateFaces(video);   // 'heavy' computation, requires a bit of time
     const directions = [...feedback.querySelectorAll('.direction')];
+
+    // first computation => remove 'loader'
+    if (!previousBox.topLeft) {
+        feedback.querySelector('.loading').innerText = "Fatto!\n Ora puoi comandare questa pagina usando soltanto i movimenti del capo."
+
+        setTimeout(() => {
+            feedback.querySelector('.loading').remove();
+        }, 6000);
+    }
 
     // if a face is found...
     if (predictions && predictions[0] && predictions[0].boundingBox) {
         const box = predictions[0].boundingBox;
 
         // console.log(previousBox && previousBox.topLeft && (box.topLeft[0][1] - previousBox.topLeft[0][1]))
-        if (previousBox && previousBox.topLeft && ((box.topLeft[0][1] - previousBox.topLeft[0][1]) >= 40)) {
+        if (previousBox.topLeft && ((box.topLeft[0][1] - previousBox.topLeft[0][1]) >= 40)) {
             scrollByWebPage(0, 300);
             directions.forEach((a) => a.style.display = 'none');
             directions.find((a) => a.classList.contains('down')).style.display = 'block';
@@ -98,6 +108,6 @@ const handleVideoFrame = async (video, model, feedback) => {
     setTimeout(timeoutFunc, 300);
 };
 
-function scrollByWebPage(x = 0, y = 0){
-    chrome.tabs.executeScript({code: `window.scrollBy({top: ${y}, left: ${x}, behavior: 'smooth'});`});
+function scrollByWebPage(x = 0, y = 0) {
+    chrome.tabs.executeScript({ code: `window.scrollBy({top: ${y}, left: ${x}, behavior: 'smooth'});` });
 }
