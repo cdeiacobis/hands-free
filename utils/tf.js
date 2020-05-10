@@ -78,9 +78,12 @@ const handleVideoFrame = async (video, model, feedback) => {
     if (!previousBox.topLeft) {
         feedback.querySelector('.loading').innerText = "Fatto!\n Ora puoi comandare questa pagina usando soltanto i movimenti del capo."
 
-        setTimeout(() => {
+        const loadingFunc = () => {
             feedback.querySelector('.loading').remove();
-        }, 6000);
+            clearTimeout(loadingFunc);
+        };
+
+        setTimeout(loadingFunc, 6000);
     }
 
     // if a face is found...
