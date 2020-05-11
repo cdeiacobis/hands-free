@@ -1,42 +1,48 @@
 @font-face {
-  font-family: 'diis_mono_chialab';
+  font-family: "diis_mono_chialab";
   font-weight: 100;
   font-style: normal;
-  src: url('./fonts/diismono_chialab/diismono_chialab-thin.otf') format('opentype');
+  src: url("./fonts/diismono_chialab/diismono_chialab-thin.otf")
+    format("opentype");
 }
 @font-face {
-  font-family: 'diis_mono_chialab';
+  font-family: "diis_mono_chialab";
   font-weight: 200;
   font-style: normal;
-  src: url('./fonts/diismono_chialab/diismono_chialab-light.otf') format('opentype');
+  src: url("./fonts/diismono_chialab/diismono_chialab-light.otf")
+    format("opentype");
 }
 @font-face {
-  font-family: 'diis_mono_chialab';
+  font-family: "diis_mono_chialab";
   font-weight: 300;
   font-style: normal;
-  src: url('./fonts/diismono_chialab/diismono_chialab-medium.otf') format('opentype');
+  src: url("./fonts/diismono_chialab/diismono_chialab-medium.otf")
+    format("opentype");
 }
 @font-face {
-  font-family: 'diis_mono_chialabregular';
+  font-family: "diis_mono_chialabregular";
   font-weight: 400;
   font-style: normal;
-  src: url('./fonts/diismono_chialab/diismono_chialab-regular.otf') format('opentype');
+  src: url("./fonts/diismono_chialab/diismono_chialab-regular.otf")
+    format("opentype");
 }
 @font-face {
-  font-family: 'diis_mono_chialabsemi_bold';
+  font-family: "diis_mono_chialabsemi_bold";
   font-weight: 600;
   font-style: normal;
-  src: url('./fonts/diismono_chialab/diismono_chialab-semibold.otf') format('opentype');
+  src: url("./fonts/diismono_chialab/diismono_chialab-semibold.otf")
+    format("opentype");
 }
 @font-face {
-  font-family: 'diis_mono_chialabbold';
+  font-family: "diis_mono_chialabbold";
   font-weight: 700;
   font-style: normal;
-  src: url('./fonts/diismono_chialab/diismono_chialab-bold.otf') format('opentype');
+  src: url("./fonts/diismono_chialab/diismono_chialab-bold.otf")
+    format("opentype");
 }
 
 body {
-  font-family: 'diis_mono_chialab', monospace;
+  font-family: "diis_mono_chialab", monospace;
   font-size: 16px;
   font-weight: 200;
   margin: 0;
@@ -50,24 +56,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.container popup, footer, .video-container{
-  padding: .5rem;
+.container popup,
+footer,
+.video-container {
+  padding: 0.5rem;
 }
 
-.content p,#ask p, .container.popup header p{
-  margin-top: .5em;
+.content p,
+#ask p,
+.container.popup header p {
+  margin-top: 0.5em;
 }
 
-.title, .disclaimer {
+.title,
+.disclaimer {
   padding: 1rem 0 1rem 0;
-  font-family: 'diis_mono_chialabregular';
+  font-family: "diis_mono_chialabregular";
   font-weight: 400;
 }
 
 #ask {
   width: 100%;
   text-decoration: none;
-  /* font-size: 1.25rem; */
   margin: 1rem 0 1rem 0;
   text-transform: uppercase;
   color: black;
@@ -112,7 +122,7 @@ header {
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  padding: .25rem 0 .5rem 0;
+  padding: 0.25rem 0 0.5rem 0;
   border-bottom: 1px solid black;
 }
 
@@ -122,7 +132,7 @@ header {
 }
 
 .container.popup header p {
-  padding: .25em;
+  padding: 0.25em;
 }
 
 .title {
@@ -172,21 +182,23 @@ a {
 }
 
 .feedback {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1em;
-    font-size: .875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  font-size: 0.875rem;
 }
 
 .feedback .direction {
-    display: none;
+  display: none;
 }
 
-.direction img{
-  max-width: 200px;
-  max-height: 200px;
+.feedback .direction p {
+    font-size: 0.75em;
+}
+
+.direction img {
   object-fit: scale-down;
   margin: auto;
   display: block;
@@ -196,17 +208,17 @@ a {
   cursor: alias;
 }
 
-.external::before{
+.external::before {
   background: url(arrow-right.svg) center/1rem no-repeat;
   content: "";
   display: inline-block;
   width: 1rem;
   height: 1rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   vertical-align: middle;
   padding-bottom: 0.1rem;
 }
 
 .loading {
-    display: none;
+  display: none;
 }

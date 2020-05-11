@@ -40,7 +40,9 @@ const handleVideo = async () => {
 };
 
 // box data 'cache'
-let previousBox = {};
+let previousHeadBox = {};
+let previousHandBox = {};
+let delta = 0;
 
 const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
     /*
@@ -77,12 +79,10 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
     const predictions = await faceModel.estimateFaces(video);
     const hands = await handModel.estimateHands(video);
 
-
-
     const directions = [...feedback.querySelectorAll('.direction')];
 
     // first computation => remove 'loader'
-    if (!previousBox.topLeft) {
+    if (!previousHeadBox.topLeft) {
         feedback.querySelector('.loading').innerText = "Prova a navigare questa pagina usando i movimenti della testa."
 
         const loadingFunc = () => {
@@ -90,13 +90,13 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
             clearTimeout(loadingFunc);
         };
 
-        setTimeout(loadingFunc, 4000);
+        setTimeout(loadingFunc, 3000);
     }
 
     // if hand is found...
     if (hands && hands[0] && hands[0].boundingBox) {
         let handsBox = hands[0].boundingBox;
-        let fingerBox =  hands[0].annotations.indexFinger
+        let fingerBox = hands[0].annotations.indexFinger
         // console.log(fingerBox)
     }
 
@@ -104,16 +104,24 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
     if (predictions && predictions[0] && predictions[0].boundingBox) {
         const box = predictions[0].boundingBox;
 
-        // console.log(previousBox && previousBox.topLeft && (box.topLeft[0][1] - previousBox.topLeft[0][1]))
-        if (previousBox.topLeft && ((box.topLeft[0][1] - previousBox.topLeft[0][1]) >= 40)) {
+        // calculate delta according to headHeight every frame, because user may move and height can change
+        const headHeight = Math.round(box.bottomRight[0][1] - box.topLeft[0][1]);
+        const delta = headHeight / 8;
+
+        // console.log(previousHeadBox && previousHeadBox.topLeft && (box.topLeft[0][1] - previousHeadBox.topLeft[0][1]))
+        if (previousHeadBox.topLeft && ((box.topLeft[0][1] - previousHeadBox.topLeft[0][1]) >= delta)) {
             scrollByWebPage(0, 300);
             directions.forEach((a) => a.style.display = 'none');
             directions.find((a) => a.classList.contains('down')).style.display = 'block';
+        } else if (previousHeadBox.topLeft && ((box.topLeft[0][1] - previousHeadBox.topLeft[0][1]) < delta)) {
+            scrollByWebPage(0, -300);
+            directions.forEach((a) => a.style.display = 'none');
+            directions.find((a) => a.classList.contains('up')).style.display = 'block';
         } else {
             directions.forEach((a) => a.style.display = 'none');
         }
 
-        previousBox = box;
+        previousHeadBox = box;
     }
 
     // next tick, baby

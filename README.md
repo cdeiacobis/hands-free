@@ -32,3 +32,11 @@ A Chrome extension to add Hands free User Interface to any Web Page. A prototype
 - Click on 'Reimposta le autorizzazioni'
 - Confirm on the popup
 
+# How to test Head movements
+
+Go to a scrollable page (e.g. [https://www.ansa.it/](https://www.ansa.it/))
+
+# How to test Hands movements
+
+Go to [https://chialab.github.io/hands-free/](https://chialab.github.io/hands-free/)
+
