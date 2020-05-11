@@ -34,15 +34,16 @@
 const handleVideo = async () => {
     const video = document.getElementById('video-stream');
     const feedback = document.querySelector('.feedback');
-    const model = await facemesh.load();
-
-    handleVideoFrame(video, model, feedback);
+    const faceModel = await facemesh.load();
+    const handModel = await handpose.load();
+    handleVideoFrame(video, faceModel, handModel, feedback);
 };
 
 // box data 'cache'
 let previousBox = {};
 
-const handleVideoFrame = async (video, model, feedback) => {
+const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
+    
     /*
     `predictions` is an array of objects describing each detected face, for example:
     [
@@ -73,12 +74,16 @@ const handleVideoFrame = async (video, model, feedback) => {
     ]
     */
 
-    const predictions = await model.estimateFaces(video);   // 'heavy' computation, requires a bit of time
+    const predictions = await faceModel.estimateFaces(video);   // 'heavy' computation, requires a bit of time
+    const hands = await handModel.estimateHands(video);
+    if (hands){
+        hands.forEach(hand => console.log(hand.landmarks));
+    }
     const directions = [...feedback.querySelectorAll('.direction')];
 
     // first computation => remove 'loader'
     if (!previousBox.topLeft) {
-        feedback.querySelector('.loading').innerText = "Fatto!\n Ora puoi comandare questa pagina usando soltanto i movimenti del capo."
+        feedback.querySelector('.loading').innerText = "Prova a navigare questa pagina usando i movimenti della testa."
 
         const loadingFunc = () => {
             feedback.querySelector('.loading').remove();
@@ -103,10 +108,12 @@ const handleVideoFrame = async (video, model, feedback) => {
 
         previousBox = box;
     }
+    
+   
 
     // next tick, baby
     const timeoutFunc = () => {
-        requestAnimationFrame(handleVideoFrame.bind(null, video, model, feedback));
+        requestAnimationFrame(handleVideoFrame.bind(null, video, faceModel, feedback));
         clearTimeout(timeoutFunc);
     };
 
