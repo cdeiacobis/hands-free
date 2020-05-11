@@ -1,33 +1,87 @@
 @font-face {
-  font-family: "PlexMono";
-  src: url("./fonts/IBMPlexMono-Regular.ttf");
+  font-family: 'diis_mono_chialab';
+  font-weight: 100;
+  font-style: normal;
+  src: url('./fonts/diismono_chialab/diismono_chialab-thin.otf') format('opentype');
+}
+@font-face {
+  font-family: 'diis_mono_chialab';
+  font-weight: 200;
+  font-style: normal;
+  src: url('./fonts/diismono_chialab/diismono_chialab-light.otf') format('opentype');
+}
+@font-face {
+  font-family: 'diis_mono_chialab';
+  font-weight: 300;
+  font-style: normal;
+  src: url('./fonts/diismono_chialab/diismono_chialab-medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'diis_mono_chialabregular';
+  font-weight: 400;
+  font-style: normal;
+  src: url('./fonts/diismono_chialab/diismono_chialab-regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'diis_mono_chialabsemi_bold';
+  font-weight: 600;
+  font-style: normal;
+  src: url('./fonts/diismono_chialab/diismono_chialab-semibold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'diis_mono_chialabbold';
+  font-weight: 700;
+  font-style: normal;
+  src: url('./fonts/diismono_chialab/diismono_chialab-bold.otf') format('opentype');
 }
 
 body {
-  font-family: "PlexMono";
+  font-family: 'diis_mono_chialab', monospace;
+  font-size: 16px;
+  font-weight: 200;
   margin: 0;
   padding: 0;
+  -moz-font-feature-settings: "kern" 1;
+  -ms-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  -webkit-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container popup, footer, .video-container{
+  padding: .5rem;
+}
+
+.content p,#ask p, .container.popup header p{
+  margin-top: .5em;
+}
+
+.title, .disclaimer {
+  padding: 1rem 0 1rem 0;
+  font-family: 'diis_mono_chialabregular';
+  font-weight: 400;
 }
 
 #ask {
   width: 100%;
-  padding: 1em;
   text-decoration: none;
-  font-size: 1.5em;
+  /* font-size: 1.25rem; */
+  margin: 1rem 0 1rem 0;
+  text-transform: uppercase;
   color: black;
 }
 
 #ask p {
   flex: none;
   padding: 0;
-  margin: 0.5em;
-  margin-top: 0.25em;
 }
 
 .video-container {
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
 }
 
 #video-stream {
@@ -43,12 +97,9 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   justify-content: start;
-}
-
-.content {
-  padding: 1em;
 }
 
 .popup {
@@ -57,11 +108,12 @@ body {
 
 header {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  padding: .25rem 0 .5rem 0;
   border-bottom: 1px solid black;
-  padding: 1em;
 }
 
 .container p {
@@ -70,21 +122,20 @@ header {
 }
 
 .container.popup header p {
-  margin-top: 0.5em;
-  padding: 0.25em;
+  padding: .25em;
 }
 
 .title {
-  font-size: 1.25em;
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 footer {
   display: flex;
+  align-items: flex-start;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
   border-top: 1px solid black;
-  padding: 1em;
 }
 
 a {
@@ -94,11 +145,13 @@ a {
 
 .permission {
   display: flex;
+  align-items: flex-start;
   flex-direction: row;
 }
 
 .column {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   margin: 0 1em;
   justify-content: space-between;
@@ -106,6 +159,7 @@ a {
 
 .content {
   display: flex;
+  align-items: flex-start;
 }
 
 .content .column {
@@ -113,18 +167,14 @@ a {
 }
 
 .content .disclaimer {
-  font-size: 2em;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.content p {
-  margin-top: 1em;
+  font-size: 1.25rem;
+  font-weight: medium;
 }
 
 .feedback {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+
     flex-direction: column;
     justify-content: center;
     padding: 1em;
@@ -133,4 +183,25 @@ a {
 .feedback .direction {
     display: none;
     font-size: 2.5em;
+}
+
+.direction img{
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: scale-down;
+}
+
+.external {
+  cursor: alias;
+}
+
+.external::before{
+  background: url(arrow-right.svg) center/1rem no-repeat;
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: .5rem;
+  vertical-align: middle;
+  padding-bottom: 0.1rem;
 }
