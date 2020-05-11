@@ -12,8 +12,10 @@ A Chrome extension to add Hands free User Interface to any Web Page. A prototype
 - [x] Design and build 'access camera' page
 - [x] Connect Tensorflow APIs
 - [ ] Recognize gestures (head or hands, or both)
-- [ ] Design and implement gesture feedback on popup camera stream
-- [ ] Change page navigation according to input gestures.
+- [x] Design and implement gesture feedback on popup camera stream
+- [ ] Find outer scrollable element
+- [ ] Use head gestures to scroll up-down a page
+- [ ] Use hands gestures for tabbing and active
 
 # How to install
 
