@@ -77,9 +77,7 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
     const predictions = await faceModel.estimateFaces(video);
     const hands = await handModel.estimateHands(video);
 
-    if (hands) {
-        hands.forEach(hand => console.log(hand.landmarks));
-    }
+
 
     const directions = [...feedback.querySelectorAll('.direction')];
 
@@ -93,6 +91,13 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
         };
 
         setTimeout(loadingFunc, 4000);
+    }
+
+    // if hand is found...
+    if (hands && hands[0] && hands[0].boundingBox) {
+        let handsBox = hands[0].boundingBox;
+        let fingerBox =  hands[0].annotations.indexFinger
+        // console.log(fingerBox)
     }
 
     // if a face is found...
