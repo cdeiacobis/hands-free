@@ -16,6 +16,8 @@
             const video = document.getElementById('video-stream');
             video.style.display = 'block';
             video.srcObject = stream;
+            const feedback = document.querySelector('.feedback');
+            feedback.querySelector('.loading').style.display = 'block';
 
             video.addEventListener('loadeddata', () => {
                 video.play();
@@ -83,7 +85,7 @@ const handleVideoFrame = async (video, model, feedback) => {
             clearTimeout(loadingFunc);
         };
 
-        setTimeout(loadingFunc, 6000);
+        setTimeout(loadingFunc, 4000);
     }
 
     // if a face is found...
