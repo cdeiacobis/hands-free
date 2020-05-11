@@ -34,15 +34,15 @@
 const handleVideo = async () => {
     const video = document.getElementById('video-stream');
     const feedback = document.querySelector('.feedback');
-    const model = await facemesh.load();
-
-    handleVideoFrame(video, model, feedback);
+    const faceModel = await facemesh.load();
+    const handModel = await handpose.load();
+    handleVideoFrame(video, faceModel, handModel, feedback);
 };
 
 // box data 'cache'
 let previousBox = {};
 
-const handleVideoFrame = async (video, model, feedback) => {
+const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
     /*
     `predictions` is an array of objects describing each detected face, for example:
     [
@@ -73,12 +73,17 @@ const handleVideoFrame = async (video, model, feedback) => {
     ]
     */
 
-    const predictions = await model.estimateFaces(video);   // 'heavy' computation, requires a bit of time
+    // 'heavy' computation, requires a bit of time
+    const predictions = await faceModel.estimateFaces(video);
+    const hands = await handModel.estimateHands(video);
+
+
+
     const directions = [...feedback.querySelectorAll('.direction')];
 
     // first computation => remove 'loader'
     if (!previousBox.topLeft) {
-        feedback.querySelector('.loading').innerText = "Fatto!\n Ora puoi comandare questa pagina usando soltanto i movimenti del capo."
+        feedback.querySelector('.loading').innerText = "Prova a navigare questa pagina usando i movimenti della testa."
 
         const loadingFunc = () => {
             feedback.querySelector('.loading').remove();
@@ -86,6 +91,13 @@ const handleVideoFrame = async (video, model, feedback) => {
         };
 
         setTimeout(loadingFunc, 4000);
+    }
+
+    // if hand is found...
+    if (hands && hands[0] && hands[0].boundingBox) {
+        let handsBox = hands[0].boundingBox;
+        let fingerBox =  hands[0].annotations.indexFinger
+        // console.log(fingerBox)
     }
 
     // if a face is found...
@@ -106,7 +118,7 @@ const handleVideoFrame = async (video, model, feedback) => {
 
     // next tick, baby
     const timeoutFunc = () => {
-        requestAnimationFrame(handleVideoFrame.bind(null, video, model, feedback));
+        requestAnimationFrame(handleVideoFrame.bind(null, video, faceModel, handModel, feedback));
         clearTimeout(timeoutFunc);
     };
 

@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "diis_mono_chialab";
+  font-weight: 300;
+  font-style: normal;
+  src: url(../../fonts/diismono_chialab/diismono_chialab-medium.otf")
+    format("opentype");
+}
+
+body {
+  background-color: floralwhite;
+  font-family: "diis_mono_chialab", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row-left,
+.row-right {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  font-family: "diis_mono_chialab", monospace;
+  text-transform: uppercase;
+  font-size: 2em;
+  padding: 1em;
+  width: 30em;
+  height: 5em;
+  margin: 1em;
+  border-radius: 5px;
+  border: 2px solid #ccd;
+}
+
+.scontrino {
+    font-size: 2em;
+    margin-top: 1em;
+}
