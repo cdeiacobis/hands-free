@@ -2,7 +2,7 @@
   font-family: "diis_mono_chialab";
   font-weight: 300;
   font-style: normal;
-  src: url(../../fonts/diismono_chialab/diismono_chialab-medium.otf")
+  src: url(./fonts/diismono_chialab/diismono_chialab-medium.otf)
     format("opentype");
 }
 
