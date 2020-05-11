@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportello Farmacia</title>
+    <link rel="stylesheet" type="text/css" href="./farmacia.css">
+    <script>
+        window.onload = () => {
+            const scontrino = document.querySelector('.scontrino');
+            [...document.querySelectorAll('button')].forEach((button) => {
+                button.addEventListener('click', () => {
+                    const text = button.innerText;
+                    const number = Math.floor(Math.random() * 50) + 1;
+                    const message = `${text}. Stampa in corso numero ${number}...`
+                    scontrino.innerText = message;
+                    setTimeout(() => {
+                        scontrino.innerText = '';
+                    }, 5000);
+                });
+            })
+        };
+    </script>
+</head>
+<body>
+    <h1 style="font-size: 3em; color: green;">Farmacia Accessibile</h1>
+    <div class="container">
+        <div class="row-left">
+            <button tabindex="0" name="acquisto">Acquisto medicinali</button>
+            <button tabindex="0" name="ritiro">Ritiro medicinali</button>
+        </div>
+        <div class="row-right">
+            <button tabindex="0" name="cup">Sportello CUP</button>
+            <button tabindex="0" name="omeopatia">Omeopatia</button>
+        </div>
+    </div>
+    <div class="scontrino">
+
+    </div>
+    </div>
+</body>
+</html>
