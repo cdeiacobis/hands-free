@@ -43,7 +43,6 @@ const handleVideo = async () => {
 let previousBox = {};
 
 const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
-    
     /*
     `predictions` is an array of objects describing each detected face, for example:
     [
@@ -74,11 +73,14 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
     ]
     */
 
-    const predictions = await faceModel.estimateFaces(video);   // 'heavy' computation, requires a bit of time
+    // 'heavy' computation, requires a bit of time
+    const predictions = await faceModel.estimateFaces(video);
     const hands = await handModel.estimateHands(video);
-    if (hands){
+
+    if (hands) {
         hands.forEach(hand => console.log(hand.landmarks));
     }
+
     const directions = [...feedback.querySelectorAll('.direction')];
 
     // first computation => remove 'loader'
@@ -108,12 +110,10 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
 
         previousBox = box;
     }
-    
-   
 
     // next tick, baby
     const timeoutFunc = () => {
-        requestAnimationFrame(handleVideoFrame.bind(null, video, faceModel, feedback));
+        requestAnimationFrame(handleVideoFrame.bind(null, video, faceModel, handModel, feedback));
         clearTimeout(timeoutFunc);
     };
 
