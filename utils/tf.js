@@ -43,6 +43,7 @@ const handleVideo = async () => {
 let previousHeadBox = {};
 let previousHandBox = {};
 let delta = 0;
+let found = false;
 
 const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
     /*
@@ -103,25 +104,27 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
     // if a face is found...
     if (predictions && predictions[0] && predictions[0].boundingBox) {
         const box = predictions[0].boundingBox;
+        directions.forEach((a) => a.style.display = 'none');
 
         // calculate delta according to headHeight every frame, because user may move and height can change
         const headHeight = Math.round(box.bottomRight[0][1] - box.topLeft[0][1]);
-        const delta = headHeight / 8;
+        const delta = headHeight / 10;
 
-        // console.log(previousHeadBox && previousHeadBox.topLeft && (box.topLeft[0][1] - previousHeadBox.topLeft[0][1]))
+        console.log(previousHeadBox && previousHeadBox.topLeft && (box.topLeft[0][1] - previousHeadBox.topLeft[0][1]))
         if (previousHeadBox.topLeft && ((box.topLeft[0][1] - previousHeadBox.topLeft[0][1]) >= delta)) {
             scrollByWebPage(0, 300);
-            directions.forEach((a) => a.style.display = 'none');
             directions.find((a) => a.classList.contains('down')).style.display = 'block';
-        } else if (previousHeadBox.topLeft && ((box.topLeft[0][1] - previousHeadBox.topLeft[0][1]) < delta)) {
+            found = true;
+        } else if (previousHeadBox.topLeft && ((previousHeadBox.topLeft[0][1] - box.topLeft[0][1]) >= delta)) {
             scrollByWebPage(0, -300);
-            directions.forEach((a) => a.style.display = 'none');
             directions.find((a) => a.classList.contains('up')).style.display = 'block';
+            found = true;
         } else {
-            directions.forEach((a) => a.style.display = 'none');
+            // update position of the head only if not gesture is not found,
+            // otherwise we have conflict between up and down positions
+            previousHeadBox = box;
+            found = false;
         }
-
-        previousHeadBox = box;
     }
 
     // next tick, baby
@@ -130,7 +133,10 @@ const handleVideoFrame = async (video, faceModel, handModel, feedback) => {
         clearTimeout(timeoutFunc);
     };
 
-    setTimeout(timeoutFunc, 300);
+    // we have to use a low refresh rate if found, otherwise moving back the head to original position
+    // will be counted as another gesture...
+    const timeout = found ? 2000 : 300;
+    setTimeout(timeoutFunc, timeout);
 };
 
 function scrollByWebPage(x = 0, y = 0) {

@@ -69,10 +69,14 @@ footer,
 }
 
 .title,
-.disclaimer {
+.disclaimer {
   padding: 1rem 0 1rem 0;
   font-family: "diis_mono_chialabregular";
   font-weight: 400;
+}
+
+.disclaimer {
+    font-weight: bold;
 }
 
 #ask {
@@ -170,6 +174,8 @@ a {
 .content {
   display: flex;
   align-items: flex-start;
+  padding: 1em;
+  width: 100%;
 }
 
 .content .column {
@@ -177,8 +183,12 @@ a {
 }
 
 .content .disclaimer {
-  font-size: 1.25rem;
+  font-size: 1.25em;
   font-weight: medium;
+}
+
+.content .disclaimer {
+    font-size: 1.5em;
 }
 
 .feedback {
